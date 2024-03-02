@@ -2,8 +2,7 @@ plugins {
     id("java")
 }
 
-group = "org.example"
-version = "1.0-SNAPSHOT"
+group = "ru.itmo.andrew.smirnov"
 
 repositories {
     mavenCentral()
@@ -16,4 +15,10 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "ru.itmo.andrew.smirnov.Main"
+    }
 }

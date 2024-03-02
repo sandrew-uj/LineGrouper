@@ -6,9 +6,9 @@ import java.util.regex.Pattern;
 public class LineParser {
     private static final String REGEXP_LINE_FORMAT = "(\"[0-9]*\";)*\"[0-9]*\"";
 
-    private Set<Integer> hashes = new HashSet<>();
+    private final Set<List<Long>> hashes = new HashSet<>();
 
-    public Long parseLong(String s) {
+    private Long parseLong(String s) {
         if (s.isEmpty() || Objects.equals(s, "\"\"")) {
             return null;
         }
@@ -33,12 +33,13 @@ public class LineParser {
     }
 
     public boolean isSensibleString(List<Long> parsedLine) {
-        if (hashes.contains(parsedLine.hashCode())) {
+        if (hashes.contains(parsedLine)) {
+            System.out.println("Dublicate: " + parsedLine + "\n");
             return false;
         }
         for(Long num: parsedLine) {
             if (Objects.nonNull(num)) {
-                hashes.add(parsedLine.hashCode());
+                hashes.add(parsedLine);
                 return true;
             }
         }

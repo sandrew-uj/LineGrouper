@@ -58,7 +58,7 @@ public class LineGrouper {
 
 
         for (int i = 0; i < sorted.size(); i++) {
-            writer.write(String.format("Группа %d\n", i + 1));
+            writer.write(String.format("Group %d\n", i + 1));
             for(int lineIdx: sorted.get(i)) {
                 writer.write(lines.get(lineIdx) + "\n");
             }

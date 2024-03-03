@@ -1,13 +1,19 @@
 package ru.itmo.andrew.smirnov;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
 
+/**
+ * Class for executing app
+ */
 public class Main {
+    /**
+     * Main method of class for executing app
+     * @param args input_filename.txt (required) output_filename.txt (optional)
+     */
     public static void main(String[] args) {
         if (Objects.isNull(args) || args.length == 0) {
             System.err.println("Invalid arguments");

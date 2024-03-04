@@ -12,7 +12,7 @@ public class LineGrouper {
     /**
      * Property, which maps index and value of column to it's DSU number
      */
-    private final List<Map<Long, Integer>> columnValToDSU = new ArrayList<>();
+    private final List<Map<Float, Integer>> columnValToDSU = new ArrayList<>();
 
     /**
      * List of lines, which added in LineGrouper
@@ -43,7 +43,7 @@ public class LineGrouper {
         dsu.makeSet(currDSUIdx);        // make set of index in lines
         lines.add(line);
         for (int i = 0; i < parsedLine.size(); i++) {
-            Long columnVal = parsedLine.get(i);
+            Float columnVal = parsedLine.get(i);
             if (columnValToDSU.size() <= i) {
                 columnValToDSU.add(new HashMap<>());        // extend the columnValToDSU if needed
             }

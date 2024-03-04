@@ -15,19 +15,19 @@ public class LineParser {
     /**
      * Lines, which already was in this LineParser
      */
-    private final Set<List<Float>> cache = new HashSet<>();
+    private final Set<List<Double>> cache = new HashSet<>();
 
     /**
      * Function for parsing long value of line
      * @param s string like "123" or ""
      * @return long value of string or null if there's no long value
      */
-    private Float parseFloat(String s) {
+    private Double parseDouble(String s) {
         if (s.isEmpty() || Objects.equals(s, "\"\"")) {
             return null;
         }
         try {
-            return Float.parseFloat(s.substring(1, s.length() - 1));
+            return Double.parseDouble(s.substring(1, s.length() - 1));
         } catch (NumberFormatException e) {
             System.err.printf("Unsupported string got: %s\n", s);
             return null;
@@ -39,7 +39,7 @@ public class LineParser {
      * @param line line
      * @return list of long values
      */
-    public List<Float> parseLine(String line) {
+    public List<Double> parseLine(String line) {
         if (!Pattern.matches(REGEXP_LINE_FORMAT, line)) {       // check if line fits regexp
             System.err.printf("Invalid line got %s\n", line);
             return Collections.emptyList();
@@ -47,7 +47,7 @@ public class LineParser {
 
         var split = line.split(";");
         return Arrays.stream(split)
-                .map(this::parseFloat)
+                .map(this::parseDouble)
                 .toList();
     }
 
@@ -57,11 +57,11 @@ public class LineParser {
      * @param parsedLine list of long values of line
      * @return true if string sensible false otherwise
      */
-    public boolean isSensibleString(List<Float> parsedLine) {
+    public boolean isSensibleString(List<Double> parsedLine) {
         if (cache.contains(parsedLine)) {
             return false;
         }
-        for(Float num: parsedLine) {
+        for(Double num: parsedLine) {
             if (Objects.nonNull(num)) {
                 cache.add(parsedLine);
                 return true;
